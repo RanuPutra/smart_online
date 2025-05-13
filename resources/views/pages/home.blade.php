@@ -13,9 +13,9 @@
         <nav class="bg-white fixed top-0 left-0 right-0 mx-auto max-w-6xl rounded-full flex items-center justify-between px-5 py-2 shadow-lg mt-6 z-50">
             <!-- Logo -->
             <div class="text-xl font-bold text-blue-900">
-                <span class="bg-blue-900 text-white px-3 py-1 rounded-full">
+                <a href="{{route('absensi.index')}}" class="bg-blue-900 text-white px-3 py-1 rounded-full">
                     SMART <span class="text-blue-300">ONLINE</span>
-                </span>
+                </a>
             </div>
 
             <!-- Menu -->
