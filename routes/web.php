@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AbsensiController;
+use App\Http\Controllers\EmployeeController;
 
 // Route untuk preview dummy
 Route::get('/preview', function () {
@@ -45,7 +46,12 @@ Route::get('/dashboard', function () {
 
 Route::resource('absensi', AbsensiController::class);
 
+Route::resource('employee', EmployeeController::class);
 
 Route::prefix('backend')->name('backend.')->group(function () {
     Route::resource('absensi', AbsensiController::class);
+});
+
+Route::prefix('backend')->name('backend.')->group(function () {
+    Route::resource('employee', EmployeeController::class);
 });
