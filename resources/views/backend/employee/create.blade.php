@@ -52,9 +52,10 @@
                 </div>
             </div>
 
-            <div class="flex justify-end mt-4">
-                <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-200">Save Employee</button>
-            </div>
+        <div class="flex items-center space-x-4">
+            <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">Simpan</button>
+            <a href="{{ route('absensi.index') }}" class="bg-gray-500 text-white px-4 py-2 rounded hover:bg-gray-600">Batal</a>
+        </div>
         </form>
     </div>
 @endsection
