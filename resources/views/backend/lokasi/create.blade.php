@@ -1,11 +1,9 @@
 @extends('backend.layouts.app')
 
 @section('content')
-    <div class="bg-white p-5 rounded-lg shadow-md">
-        <div class="mb-5">
-            <h1 class="text-xl font-bold text-gray-900">Add New Location</h1>
-        </div>
+<h1 class="text-2xl font-bold mb-4 text-shadow-sm">Tambah Lokasi</h1>  
 
+    <div class="bg-white p-5 rounded-lg shadow-md">
         <form action="{{ route('lokasi.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
               <div class="mb-4">
