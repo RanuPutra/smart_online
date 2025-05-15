@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\LokasiController;
 
 // Route untuk preview dummy
 Route::get('/preview', function () {
@@ -54,4 +55,10 @@ Route::prefix('backend')->name('backend.')->group(function () {
 
 Route::prefix('backend')->name('backend.')->group(function () {
     Route::resource('employee', EmployeeController::class);
+});
+
+Route::resource('lokasi', LokasiController::class);
+
+Route::prefix('backend')->name('backend.')->group(function () {
+    Route::resource('lokasi', LokasiController::class);
 });
