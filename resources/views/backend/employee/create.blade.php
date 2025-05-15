@@ -1,11 +1,8 @@
 @extends('backend.layouts.app')
 
 @section('content')
+<h1 class="text-2xl font-bold mb-4 text-shadow-sm">Tambah Employee</h1>  
     <div class="bg-white p-5 rounded-lg shadow-md">
-        <div class="mb-5">
-            <h1 class="text-xl font-bold text-gray-900">Add New Employee</h1>
-        </div>
-
         <form action="{{ route('employee.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
