@@ -45,14 +45,14 @@
 
         <!-- Filters -->
         <div class="mb-5 flex flex-col md:flex-row md:space-x-3 space-y-3 md:space-y-0">
-            <input type="text" placeholder="Search employee" class="border border-gray-200 rounded-lg px-3 py-1.5 w-full md:w-1/3 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
-            <select class="border border-gray-200 rounded-lg px-3 py-1.5 w-full md:w-1/4 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+            <input type="text" placeholder="Search employee" class="border border-gray-200 rounded-lg px-3 py-1.5 w-full md:w-1/3 focus:outline-none focus:ring-2 focus:ring-blue-900 text-sm">
+            <select class="border border-gray-200 rounded-lg px-3 py-1.5 w-full md:w-1/4 focus:outline-none focus:ring-2 focus:ring-blue-900 text-sm">
                 <option>Date Range</option>
                 <option>Today</option>
                 <option>This Week</option>
                 <option>This Month</option>
             </select>
-            <select class="border border-gray-200 rounded-lg px-3 py-1.5 w-full md:w-1/4 focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm">
+            <select class="border border-gray-200 rounded-lg px-3 py-1.5 w-full md:w-1/4 focus:outline-none focus:ring-2 focus:ring-blue-900 text-sm">
                 <option>Attendance Filter</option>
                 <option>Present</option>
                 <option>Not Present</option>
