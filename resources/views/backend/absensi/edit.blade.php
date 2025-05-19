@@ -8,8 +8,14 @@
         @method('PUT')
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="nama_karyawan">Nama Karyawan</label>
-            <input type="text" name="nama_karyawan" id="nama_karyawan" value="{{ $absensi->nama_karyawan }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring" required>
-        </div>
+            <select name="nama_karyawan" id="nama_karyawan" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring" required>
+                @foreach ($employees as $employee)
+                    <option value="{{ $employee->nama }}" {{ $absensi->nama_karyawan == $employee->nama ? 'selected' : '' }}>
+                        {{ $employee->nama }}
+                    </option>
+                @endforeach
+            </select>        
+            </div>
         <div class="grid grid-cols-3 gap-4">
             <div class="mb-4">
                 <label class="block text-gray-700 text-sm font-bold mb-2" for="clock_in">Clock In</label>
@@ -30,7 +36,13 @@
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="location">Location</label>
-            <input type="text" name="location" id="location" value="{{ $absensi->location }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring">
+            <select name="location" id="location" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring">
+                <option value="">-- Pilih Lokasi --</option>
+                @foreach ($lokasis as $lokasi)
+                    <option value="{{ $lokasi->nama_lokasi }}">{{ $lokasi->nama_lokasi }}</option>
+                @endforeach
+            </select>        
+
         </div>
         <div class="mb-4">
             <label class="block text-gray-700 text-sm font-bold mb-2" for="notes">Notes</label>

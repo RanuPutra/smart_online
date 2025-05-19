@@ -76,7 +76,10 @@ class AbsensiController extends Controller
 
     public function edit(Absensi $absensi)
     {
-        return view('backend.absensi.edit', compact('absensi'));
+        $employees = Employee::all();
+        $lokasis = Lokasi::all();
+
+        return view('backend.absensi.edit', compact('absensi', 'employees', 'lokasis'));
     }
 
     public function destroy(Absensi $absensi)
