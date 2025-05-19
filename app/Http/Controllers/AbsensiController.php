@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Absensi;
+use App\Models\Employee;
+use App\Models\Lokasi;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
@@ -16,7 +18,10 @@ class AbsensiController extends Controller
 
     public function create()
     {
-        return view('backend.absensi.create');
+        $employees = Employee::all();
+        $lokasis = Lokasi::all();
+
+        return view('backend.absensi.create', compact('employees', 'lokasis'));
     }
 
     public function store(Request $request)
