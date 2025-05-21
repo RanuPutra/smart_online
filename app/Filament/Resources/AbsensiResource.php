@@ -27,7 +27,7 @@ class AbsensiResource extends Resource
                     ->required()
                     ->searchable(),
                 Forms\Components\Select::make('lokasi_id')
-                    ->relationship('lokasi', 'nama')
+                    ->relationship('lokasi', 'nama_lokasi') // Ganti 'nama' menjadi 'nama_lokasi'
                     ->required()
                     ->searchable(),
                 Forms\Components\DateTimePicker::make('clock_in')
