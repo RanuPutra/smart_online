@@ -39,6 +39,10 @@ Route::get('/contact', function () {
     return view('pages.contact');
 });
 
+Route::get('/blog', function () {
+    return view('pages.blog');
+});
+
 // ROUTE KHUSUS / UNTUK BE
 
 Route::get('/dashboard', function () {
