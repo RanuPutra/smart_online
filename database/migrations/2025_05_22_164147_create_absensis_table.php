@@ -15,7 +15,7 @@ return new class extends Migration
             $table->datetime('clock_in')->nullable();
             $table->datetime('clock_out')->nullable();
             $table->time('overtime')->nullable();
-            $table->string('picture')->nullable();
+            // $table->foreignId('employee_id')->constrained('employees')->cascadeOnDelete();
             $table->text('notes')->nullable();
             $table->timestamps();
         });

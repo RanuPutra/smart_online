@@ -9,6 +9,17 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Components\Card;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Columns\ImageColumn;
+use Filament\Tables\Actions\EditAction;
+use Filament\Tables\Actions\DeleteAction;
+use Filament\Tables\Actions\BulkActionGroup;
+use Filament\Tables\Actions\DeleteBulkAction;
 
 
 class EmployeeResource extends Resource
@@ -36,8 +47,9 @@ class EmployeeResource extends Resource
                                 ->email(),
                             Forms\Components\TextInput::make('nomor_telepon'),
                             Forms\Components\Textarea::make('alamat'),
-                            Forms\Components\DatePicker::make('tanggal_bergabung')  ->suffixIcon('heroicon-o-calendar')
- ->native(false),
+                            Forms\Components\DatePicker::make('tanggal_bergabung')  
+                                ->suffixIcon('heroicon-o-calendar')
+                                ->native(false),
                             Forms\Components\FileUpload::make('foto')
                                 ->image()
                                 ->directory('employees')
@@ -59,7 +71,8 @@ class EmployeeResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email'),
                 Tables\Columns\TextColumn::make('nomor_telepon'),
-                Tables\Columns\ImageColumn::make('foto'),
+                Tables\Columns\ImageColumn::make('foto') ->disk('public') 
+                    ->circular(),
                 Tables\Columns\TextColumn::make('tanggal_bergabung')
                     ->date(),
             ])
@@ -72,7 +85,7 @@ class EmployeeResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

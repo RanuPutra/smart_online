@@ -22,7 +22,6 @@ class AbsensiResource extends Resource
     {
         return $form
             ->schema([
-<<<<<<< HEAD
                     Forms\Components\Card::make()
                         ->schema([
                             Forms\Components\Select::make('employee_id')
@@ -31,7 +30,7 @@ class AbsensiResource extends Resource
                                 ->searchable()
                                 ->preload(),
                             Forms\Components\Select::make('lokasi_id')
-                                ->relationship('lokasi', 'nama_lokasi') // Ganti 'nama' menjadi 'nama_lokasi'
+                                ->relationship('lokasi', 'nama_lokasi')
                                 ->required()
                                 ->searchable()
                                 ->preload(),
@@ -39,39 +38,11 @@ class AbsensiResource extends Resource
                                 ->required(),
                             Forms\Components\DateTimePicker::make('clock_out'),
                             Forms\Components\TimePicker::make('overtime'),
-                            Forms\Components\FileUpload::make('picture')
-                                ->image()
-                                ->directory('absensis'),
                             Forms\Components\Textarea::make('notes')
                                 ->maxLength(65535)
                                 ->columnSpanFull(),
                         ]) //endcard
             ]);  //endform
-=======
-                Forms\Components\Select::make('employee_id')
-                    ->relationship('employee', 'nama')
-                    ->required()
-                    ->searchable(),
-                Forms\Components\Select::make('lokasi_id')
-                    ->relationship('lokasi', 'nama_lokasi')
-                    ->required()
-                    ->searchable(),
-                Forms\Components\DateTimePicker::make('clock_in')
-                    ->nullable(), // Ubah required menjadi nullable
-                Forms\Components\DateTimePicker::make('clock_out')
-                    ->nullable(), // Tambahkan nullable
-                Forms\Components\TimePicker::make('overtime')
-                    ->nullable(),
-                Forms\Components\FileUpload::make('picture')
-                    ->image()
-                    ->directory('absensis')
-                    ->nullable(),
-                Forms\Components\Textarea::make('notes')
-                    ->maxLength(65535)
-                    ->nullable()
-                    ->columnSpanFull(),
-            ]);
->>>>>>> 32aac47af41cda5da2c1fcd3ea900aa9b5cc707f
     }
 
     public static function table(Table $table): Table
@@ -91,7 +62,8 @@ class AbsensiResource extends Resource
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('overtime'),
-                Tables\Columns\ImageColumn::make('picture'),
+                Tables\Columns\ImageColumn::make('employee.foto')
+                    ->circular(),
             ])
             ->filters([
                 //
@@ -102,7 +74,7 @@ class AbsensiResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }

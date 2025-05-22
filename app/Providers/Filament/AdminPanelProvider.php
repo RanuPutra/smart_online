@@ -35,7 +35,9 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->font('Poppins')
             ->spa()
+            // ->topNavigation()     
             ->sidebarCollapsibleOnDesktop()
+            ->brandName('Time Management')
             ->profile()
             ->userMenuItems([  'profile' => MenuItem::make()->label('Edit Profil'),  ])
 
