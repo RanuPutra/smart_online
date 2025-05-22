@@ -22,14 +22,17 @@ class LokasiResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('nama_lokasi')
-                    ->required()
-                    ->maxLength(255),
-                Forms\Components\Textarea::make('alamat')
-                    ->required()
-                    ->maxLength(255)
-                    ->columnSpanFull(),
-            ]);
+                Forms\Components\Card::make()
+                    ->schema([
+                        Forms\Components\TextInput::make('nama_lokasi')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\Textarea::make('alamat')
+                            ->required()
+                            ->maxLength(255)
+                            ->columnSpanFull(),
+                    ]) //endcard
+            ]); //endform
     }
 
     public static function table(Table $table): Table
@@ -83,4 +86,16 @@ class LokasiResource extends Resource
             'edit' => Pages\EditLokasi::route('/{record}/edit'),
         ];
     }
+
+    public static function  getNavigationLabel(): string
+    {
+        return __('Lokasi');
+    }
+
+    public static function  getPluralModelLabel(): string
+    {
+        return __('Data Lokasi');
+
+    }
+
 }

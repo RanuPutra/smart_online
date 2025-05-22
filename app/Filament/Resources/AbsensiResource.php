@@ -22,25 +22,30 @@ class AbsensiResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('employee_id')
-                    ->relationship('employee', 'nama')
-                    ->required()
-                    ->searchable(),
-                Forms\Components\Select::make('lokasi_id')
-                    ->relationship('lokasi', 'nama_lokasi') // Ganti 'nama' menjadi 'nama_lokasi'
-                    ->required()
-                    ->searchable(),
-                Forms\Components\DateTimePicker::make('clock_in')
-                    ->required(),
-                Forms\Components\DateTimePicker::make('clock_out'),
-                Forms\Components\TimePicker::make('overtime'),
-                Forms\Components\FileUpload::make('picture')
-                    ->image()
-                    ->directory('absensis'),
-                Forms\Components\Textarea::make('notes')
-                    ->maxLength(65535)
-                    ->columnSpanFull(),
-            ]);
+                    Forms\Components\Card::make()
+                        ->schema([
+                            Forms\Components\Select::make('employee_id')
+                                ->relationship('employee', 'nama')
+                                ->required()
+                                ->searchable()
+                                ->preload(),
+                            Forms\Components\Select::make('lokasi_id')
+                                ->relationship('lokasi', 'nama_lokasi') // Ganti 'nama' menjadi 'nama_lokasi'
+                                ->required()
+                                ->searchable()
+                                ->preload(),
+                            Forms\Components\DateTimePicker::make('clock_in')
+                                ->required(),
+                            Forms\Components\DateTimePicker::make('clock_out'),
+                            Forms\Components\TimePicker::make('overtime'),
+                            Forms\Components\FileUpload::make('picture')
+                                ->image()
+                                ->directory('absensis'),
+                            Forms\Components\Textarea::make('notes')
+                                ->maxLength(65535)
+                                ->columnSpanFull(),
+                        ]) //endcard
+            ]);  //endform
     }
 
     public static function table(Table $table): Table
@@ -50,7 +55,7 @@ class AbsensiResource extends Resource
                 Tables\Columns\TextColumn::make('employee.nama')
                     ->searchable()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('lokasi.nama')
+                Tables\Columns\TextColumn::make('lokasi.nama_lokasi')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('clock_in')
@@ -91,4 +96,16 @@ class AbsensiResource extends Resource
             'edit' => Pages\EditAbsensi::route('/{record}/edit'),
         ];
     }
+
+        public static function  getNavigationLabel(): string
+    {
+        return __('Absensi');
+    }
+
+    public static function  getPluralModelLabel(): string
+    {
+        return __('Data Absensi');
+
+    }
+
 }

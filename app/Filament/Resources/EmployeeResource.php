@@ -10,6 +10,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 
+
 class EmployeeResource extends Resource
 {
     protected static ?string $model = Employee::class;
@@ -22,22 +23,26 @@ class EmployeeResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\TextInput::make('id_karyawan')
-                    ->required()
-                    ->unique(ignoreRecord: true),
-                Forms\Components\TextInput::make('nama')
-                    ->required(),
-                Forms\Components\TextInput::make('jabatan'),
-                Forms\Components\TextInput::make('departemen'),
-                Forms\Components\TextInput::make('email')
-                    ->email(),
-                Forms\Components\TextInput::make('nomor_telepon'),
-                Forms\Components\Textarea::make('alamat'),
-                Forms\Components\DatePicker::make('tanggal_bergabung'),
-                Forms\Components\FileUpload::make('foto')
-                    ->image()
-                    ->directory('employees')
-            ]);
+                    Forms\Components\Card::make()
+                        ->schema([
+                            Forms\Components\TextInput::make('id_karyawan')
+                                ->required()
+                                ->unique(ignoreRecord: true),
+                            Forms\Components\TextInput::make('nama')
+                                ->required(),
+                            Forms\Components\TextInput::make('jabatan'),
+                            Forms\Components\TextInput::make('departemen'),
+                            Forms\Components\TextInput::make('email')
+                                ->email(),
+                            Forms\Components\TextInput::make('nomor_telepon'),
+                            Forms\Components\Textarea::make('alamat'),
+                            Forms\Components\DatePicker::make('tanggal_bergabung')  ->suffixIcon('heroicon-o-calendar')
+ ->native(false),
+                            Forms\Components\FileUpload::make('foto')
+                                ->image()
+                                ->directory('employees')
+                        ]) //endcard
+            ]);  //endform
     }
 
     public static function table(Table $table): Table
@@ -87,4 +92,16 @@ class EmployeeResource extends Resource
             'edit' => Pages\EditEmployee::route('/{record}/edit'),
         ];
     }
+
+        public static function  getNavigationLabel(): string
+    {
+        return __('Employee');
+    }
+
+    public static function  getPluralModelLabel(): string
+    {
+        return __('Data Employee');
+
+    }
+
 }
