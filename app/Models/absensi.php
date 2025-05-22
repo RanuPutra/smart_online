@@ -12,12 +12,12 @@ class Absensi extends Model
     protected $table = 'absensis';
 
     protected $fillable = [
-        'nama_karyawan',
+        'employee_id',
+        'lokasi_id',
         'clock_in',
         'clock_out',
         'overtime',
         'picture',
-        'location',
         'notes'
     ];
 

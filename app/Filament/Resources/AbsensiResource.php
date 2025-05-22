@@ -27,18 +27,22 @@ class AbsensiResource extends Resource
                     ->required()
                     ->searchable(),
                 Forms\Components\Select::make('lokasi_id')
-                    ->relationship('lokasi', 'nama_lokasi') // Ganti 'nama' menjadi 'nama_lokasi'
+                    ->relationship('lokasi', 'nama_lokasi')
                     ->required()
                     ->searchable(),
                 Forms\Components\DateTimePicker::make('clock_in')
-                    ->required(),
-                Forms\Components\DateTimePicker::make('clock_out'),
-                Forms\Components\TimePicker::make('overtime'),
+                    ->nullable(), // Ubah required menjadi nullable
+                Forms\Components\DateTimePicker::make('clock_out')
+                    ->nullable(), // Tambahkan nullable
+                Forms\Components\TimePicker::make('overtime')
+                    ->nullable(),
                 Forms\Components\FileUpload::make('picture')
                     ->image()
-                    ->directory('absensis'),
+                    ->directory('absensis')
+                    ->nullable(),
                 Forms\Components\Textarea::make('notes')
                     ->maxLength(65535)
+                    ->nullable()
                     ->columnSpanFull(),
             ]);
     }
