@@ -13,18 +13,11 @@ class Absensi extends Model
 
     protected $fillable = [
         'employee_id',
-<<<<<<< HEAD
-=======
         'lokasi_id',
->>>>>>> 32aac47af41cda5da2c1fcd3ea900aa9b5cc707f
         'clock_in',
         'clock_out',
         'overtime',
         'picture',
-<<<<<<< HEAD
-        'lokasi_id',
-=======
->>>>>>> 32aac47af41cda5da2c1fcd3ea900aa9b5cc707f
         'notes'
     ];
 
