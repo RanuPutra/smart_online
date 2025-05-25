@@ -19,6 +19,9 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Navigation\MenuItem;
 
+use Awcodes\Overlook\OverlookPlugin;
+use Awcodes\Overlook\Widgets\OverlookWidget;
+
 
 
 class AdminPanelProvider extends PanelProvider
@@ -35,15 +38,39 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->font('Poppins')
             ->spa()
-           ->topNavigation()     
+            ->topNavigation()     
             ->sidebarCollapsibleOnDesktop()
             ->brandName('Time Management')
             ->profile()
             ->userMenuItems([  'profile' => MenuItem::make()->label('Edit Profil'),  ])
-           ->widgets([
-               \App\Filament\Widgets\DashboardStats::class,
-             ])
-
+            ->widgets([
+                \App\Filament\Widgets\DashboardStats::class,
+                OverlookWidget::class,
+            ])
+            ->plugins([
+                OverlookPlugin::make()
+                ->includes([
+                    \App\Filament\Resources\AbsensiResource::class,
+                    \App\Filament\Resources\EmployeeResource::class,
+                    \App\Filament\Resources\LokasiResource::class
+                ])
+                    ->sort(2)
+                    ->columns([
+                        'default' => 1,
+                        'sm' => 1,
+                        'md' => 1,
+                        'lg' => 2,
+                        'xl' => 3,
+                        '2xl' => null,
+                        // 'default' => 1,
+                        // 'sm' => 2,
+                        // 'md' => 3,
+                        // 'lg' => 4,
+                        // 'xl' => 5,
+                        // '2xl' => null,
+                    ])
+                    ->tooltips(false),
+            ])
 
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
