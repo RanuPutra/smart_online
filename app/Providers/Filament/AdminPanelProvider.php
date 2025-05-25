@@ -40,6 +40,9 @@ class AdminPanelProvider extends PanelProvider
             ->brandName('Time Management')
             ->profile()
             ->userMenuItems([  'profile' => MenuItem::make()->label('Edit Profil'),  ])
+            // ->widgets([
+            //     \App\Filament\Widgets\DashboardStats::class,
+            //   ])
 
 
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')

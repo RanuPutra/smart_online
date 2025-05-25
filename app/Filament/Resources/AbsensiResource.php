@@ -40,10 +40,10 @@ class AbsensiResource extends Resource
                             ->nullable(),
                         Forms\Components\TimePicker::make('overtime')
                             ->nullable(),
-                        Forms\Components\FileUpload::make('picture')
-                            ->image()
-                            ->directory('absensis')
-                            ->nullable(),
+                        // Forms\Components\FileUpload::make('picture')
+                        //     ->image()
+                        //     ->directory('absensis')
+                        //     ->nullable(),
                         Forms\Components\Textarea::make('notes')
                             ->maxLength(65535)
                             ->nullable()
@@ -56,6 +56,9 @@ class AbsensiResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('employee.foto') // Reference employee's photo
+                    ->disk('public')
+                    ->circular(),
                 Tables\Columns\TextColumn::make('employee.nama')
                     ->searchable()
                     ->sortable(),
@@ -69,7 +72,6 @@ class AbsensiResource extends Resource
                     ->dateTime()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('overtime'),
-                Tables\Columns\ImageColumn::make('picture'),
             ])
             ->filters([
                 //
