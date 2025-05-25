@@ -35,16 +35,11 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->font('Poppins')
             ->spa()
-            // ->topNavigation()     
             ->sidebarCollapsibleOnDesktop()
             ->brandName('Time Management')
             ->profile()
-            ->userMenuItems([  'profile' => MenuItem::make()->label('Edit Profil'),  ])
-            // ->widgets([
-            //     \App\Filament\Widgets\DashboardStats::class,
-            //   ])
-
-
+            ->userMenuItems(['profile' => MenuItem::make()->label('Edit Profil'),])
+            ->widgets([])
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
