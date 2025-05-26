@@ -19,11 +19,6 @@ use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Navigation\MenuItem;
 
-use Awcodes\Overlook\OverlookPlugin;
-use Awcodes\Overlook\Widgets\OverlookWidget;
-
-
-
 class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
@@ -42,45 +37,20 @@ class AdminPanelProvider extends PanelProvider
             ->sidebarCollapsibleOnDesktop()
             ->brandName('Time Management')
             ->profile()
-            ->userMenuItems([  'profile' => MenuItem::make()->label('Edit Profil'),  ])
-            ->widgets([
-                \App\Filament\Widgets\DashboardStats::class,
-                OverlookWidget::class,
+            ->userMenuItems([
+                'profile' => MenuItem::make()->label('Edit Profil'),
             ])
-            ->plugins([
-                OverlookPlugin::make()
-                ->includes([
-                    \App\Filament\Resources\AbsensiResource::class,
-                    \App\Filament\Resources\EmployeeResource::class,
-                    \App\Filament\Resources\LokasiResource::class
-                ])
-                    ->sort(2)
-                    ->columns([
-                        'default' => 1,
-                        'sm' => 1,
-                        'md' => 1,
-                        'lg' => 2,
-                        'xl' => 3,
-                        '2xl' => null,
-                        // 'default' => 1,
-                        // 'sm' => 2,
-                        // 'md' => 3,
-                        // 'lg' => 4,
-                        // 'xl' => 5,
-                        // '2xl' => null,
-                    ])
-                    ->tooltips(false),
-            ])
-
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
-                Pages\Dashboard::class,
+                \App\Filament\Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                // Widgets\AccountWidget::class,
-                // Widgets\FilamentInfoWidget::class,
+                \App\Filament\Widgets\StatsOverview::class,
+                \App\Filament\Widgets\WeeklyAttendanceChart::class,
+                \App\Filament\Widgets\MonthlyAttendanceChart::class,
+                \App\Filament\Widgets\EmployeeStats::class,
             ])
             ->middleware([
                 EncryptCookies::class,

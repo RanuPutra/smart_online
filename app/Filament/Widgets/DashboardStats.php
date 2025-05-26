@@ -18,7 +18,7 @@ class DashboardStats extends BaseWidget
     protected function getStats(): array
     {
         $absensiCount = Absensi::whereDate('clock_in', now()->toDateString())->count();
-        \Log::info('Absensi Count: ' . $absensiCount); 
+        // \Log::info('Absensi Count: ' . $absensiCount); 
 
         return [
             Stat::make('Total Absensi', Absensi::whereDate('clock_in', now()->toDateString())->count())
