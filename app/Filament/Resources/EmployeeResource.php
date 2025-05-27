@@ -34,26 +34,34 @@ class EmployeeResource extends Resource
     {
         return $form
             ->schema([
-                    Forms\Components\Card::make()
-                        ->schema([
-                            Forms\Components\TextInput::make('id_karyawan')
-                                ->required()
-                                ->unique(ignoreRecord: true),
-                            Forms\Components\TextInput::make('nama')
-                                ->required(),
-                            Forms\Components\TextInput::make('jabatan'),
-                            Forms\Components\TextInput::make('departemen'),
-                            Forms\Components\TextInput::make('email')
-                                ->email(),
-                            Forms\Components\TextInput::make('nomor_telepon'),
-                            Forms\Components\Textarea::make('alamat'),
-                            Forms\Components\DatePicker::make('tanggal_bergabung')  
-                                ->suffixIcon('heroicon-o-calendar')
-                                ->native(false),
-                            Forms\Components\FileUpload::make('foto')
-                                ->image()
-                                ->directory('employees')
-                        ]) //endcard
+                Forms\Components\Card::make()
+                    ->schema([
+                        Forms\Components\TextInput::make('id_karyawan')
+                            ->required()
+                            ->unique(ignoreRecord: true),
+
+                        Forms\Components\TextInput::make('nama')
+                            ->required(),
+
+                        Forms\Components\TextInput::make('jabatan'),
+
+                        Forms\Components\TextInput::make('departemen'),
+
+                        Forms\Components\TextInput::make('email')
+                            ->email(),
+
+                        Forms\Components\TextInput::make('nomor_telepon'),
+
+                        Forms\Components\Textarea::make('alamat'),
+
+                        Forms\Components\DatePicker::make('tanggal_bergabung')  
+                            ->suffixIcon('heroicon-o-calendar') 
+                            ->native(false),
+                            
+                        Forms\Components\FileUpload::make('foto')
+                            ->image()
+                            ->directory('employees')
+                    ]) //endcard
             ]);  //endform
     }
 
@@ -71,7 +79,8 @@ class EmployeeResource extends Resource
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email'),
                 Tables\Columns\TextColumn::make('nomor_telepon'),
-                Tables\Columns\ImageColumn::make('foto') ->disk('public') 
+                Tables\Columns\ImageColumn::make('foto') 
+                    ->disk('public') 
                     ->circular(),
                 Tables\Columns\TextColumn::make('tanggal_bergabung')
                     ->date(),
@@ -106,7 +115,7 @@ class EmployeeResource extends Resource
         ];
     }
 
-        public static function  getNavigationLabel(): string
+    public static function  getNavigationLabel(): string
     {
         return __('Employee');
     }
@@ -114,7 +123,6 @@ class EmployeeResource extends Resource
     public static function  getPluralModelLabel(): string
     {
         return __('Data Employee');
-
     }
 
 }

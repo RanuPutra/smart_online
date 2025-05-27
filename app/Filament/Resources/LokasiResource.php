@@ -27,6 +27,7 @@ class LokasiResource extends Resource
                         Forms\Components\TextInput::make('nama_lokasi')
                             ->required()
                             ->maxLength(255),
+                            
                         Forms\Components\Textarea::make('alamat')
                             ->required()
                             ->maxLength(255)
@@ -95,7 +96,6 @@ class LokasiResource extends Resource
     public static function  getPluralModelLabel(): string
     {
         return __('Data Lokasi');
-
     }
 
 }

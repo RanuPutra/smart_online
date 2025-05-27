@@ -40,16 +40,12 @@ class AbsensiResource extends Resource
                             ->nullable(),
                         Forms\Components\TimePicker::make('overtime')
                             ->nullable(),
-                        // Forms\Components\FileUpload::make('picture')
-                        //     ->image()
-                        //     ->directory('absensis')
-                        //     ->nullable(),
                         Forms\Components\Textarea::make('notes')
                             ->maxLength(65535)
                             ->nullable()
                             ->columnSpanFull(),
-                    ])
-            ]);
+                    ]) //endcard
+            ]); //endform
     }
 
     public static function table(Table $table): Table
@@ -103,7 +99,7 @@ class AbsensiResource extends Resource
         ];
     }
 
-        public static function  getNavigationLabel(): string
+    public static function  getNavigationLabel(): string
     {
         return __('Absensi');
     }
@@ -111,7 +107,6 @@ class AbsensiResource extends Resource
     public static function  getPluralModelLabel(): string
     {
         return __('Data Absensi');
-
     }
 
 }

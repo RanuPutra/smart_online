@@ -27,6 +27,6 @@ class Employee extends Model
 
     public function absensis()
     {
-        return $this->hasMany(Absensi::class, 'nama_karyawan', 'nama');
+        return $this->hasMany(Absensi::class);
     }
 }
