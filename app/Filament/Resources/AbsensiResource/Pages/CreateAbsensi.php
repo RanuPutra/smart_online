@@ -5,6 +5,7 @@ namespace App\Filament\Resources\AbsensiResource\Pages;
 use App\Filament\Resources\AbsensiResource;
 use Filament\Actions;
 use Filament\Resources\Pages\CreateRecord;
+use Filament\Notifications\Notification;
 
 class CreateAbsensi extends CreateRecord
 {
@@ -14,4 +15,13 @@ class CreateAbsensi extends CreateRecord
 {
     return $this->getResource()::getUrl('index');
 }
+
+protected function afterCreate(): void
+{
+    Notification::make()
+        ->title('Data berhasil ditambahkan')
+        ->success()
+        ->send();
+}
+
 }
