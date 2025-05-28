@@ -9,6 +9,10 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\Grid;
+
+
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
@@ -39,13 +43,22 @@ class EmployeeResource extends Resource
                         Forms\Components\TextInput::make('id_karyawan')
                             ->required()
                             ->unique(ignoreRecord: true),
-
-                        Forms\Components\TextInput::make('nama')
-                            ->required(),
-
-                        Forms\Components\TextInput::make('jabatan'),
-
-                        Forms\Components\TextInput::make('departemen'),
+                        Grid::make(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('nama')
+                                    ->required(),
+                                Forms\Components\Select::make('jenis_kelamin')
+                                    ->native(false)
+                                    ->options([
+                                        'Laki-laki' => 'Laki-laki',
+                                        'Perempuan' => 'Perempuan',
+                                    ])
+                            ]),
+                        Grid::make(2)
+                            ->schema([
+                                Forms\Components\TextInput::make('jabatan'),
+                                Forms\Components\TextInput::make('departemen'),
+                            ]),
 
                         Forms\Components\TextInput::make('email')
                             ->email(),
@@ -60,7 +73,7 @@ class EmployeeResource extends Resource
                             
                         Forms\Components\FileUpload::make('foto')
                             ->image()
-                            ->directory('employees')
+                            ->directory('employees'),
                     ]) //endcard
             ]);  //endform
     }
@@ -70,6 +83,7 @@ class EmployeeResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('id_karyawan')
+                    ->label('ID')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('nama')
                     ->searchable(),
@@ -78,10 +92,13 @@ class EmployeeResource extends Resource
                 Tables\Columns\TextColumn::make('departemen')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email'),
-                Tables\Columns\TextColumn::make('nomor_telepon'),
+                Tables\Columns\TextColumn::make('nomor_telepon')
+                    ->label('No. Telp'),
                 Tables\Columns\ImageColumn::make('foto') 
                     ->disk('public') 
                     ->circular(),
+                Tables\Columns\TextColumn::make('jenis_kelamin')
+                    ->label('Gender'),
                 Tables\Columns\TextColumn::make('tanggal_bergabung')
                     ->date(),
             ])

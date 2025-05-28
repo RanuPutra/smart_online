@@ -18,7 +18,8 @@ class Employee extends Model
         'nomor_telepon',
         'alamat',
         'tanggal_bergabung',
-        'foto'
+        'foto',
+        'jenis_kelamin'
     ];
 
     protected $casts = [

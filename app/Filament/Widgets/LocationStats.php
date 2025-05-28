@@ -12,8 +12,6 @@ class LocationStats extends BaseWidget
     {
         return [
             Stat::make('Total Lokasi', Lokasi::count())
-            // ->description('Total')
-            //     ->icon('heroicon-o-map-pin')
         ];
     }
 

@@ -43,14 +43,17 @@ class AdminPanelProvider extends PanelProvider
             ->discoverResources(in: app_path('Filament/Resources'), for: 'App\\Filament\\Resources')
             ->discoverPages(in: app_path('Filament/Pages'), for: 'App\\Filament\\Pages')
             ->pages([
-                \App\Filament\Pages\Dashboard::class,
+                // \App\Filament\Pages\Dashboard::class,
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-                \App\Filament\Widgets\StatsOverview::class,
-                \App\Filament\Widgets\WeeklyAttendanceChart::class,
-                \App\Filament\Widgets\MonthlyAttendanceChart::class,
-                \App\Filament\Widgets\EmployeeStats::class,
+                \App\Filament\Widgets\CustomDashboardWidget::class
+                // \App\Filament\Widgets\StatsOverview::class,
+                // \App\Filament\Widgets\WeeklyAttendanceChart::class,
+                // \App\Filament\Widgets\MonthlyAttendanceChart::class,
+                // \App\Filament\Widgets\EmployeeStats::class,
+                //                 \App\Filament\Widgets\LocationStats::class,
+
             ])
             ->middleware([
                 EncryptCookies::class,

@@ -4,7 +4,6 @@ namespace App\Filament\Widgets;
 
 use App\Models\Absensi;
 use App\Models\Employee;
-use App\Models\Lokasi;
 use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Illuminate\Support\Carbon;
@@ -26,7 +25,6 @@ class StatsOverview extends BaseWidget
         $lateArrival = Absensi::whereDate('clock_in', $today)
             ->where('clock_in', '>', $onTimeThreshold)
             ->count();
-        $totalLokasi = Lokasi::count();
 
         return [
             Stat::make('Absen Hari Ini', $absenHariIni),

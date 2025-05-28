@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AbsensiController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\LokasiController;
+use App\Http\Controllers\DashboardController;
 
 // Route untuk preview dummy
 Route::get('/preview', function () {
@@ -66,3 +67,5 @@ Route::resource('lokasi', LokasiController::class);
 Route::prefix('backend')->name('backend.')->group(function () {
     Route::resource('lokasi', LokasiController::class);
 });
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard'); 

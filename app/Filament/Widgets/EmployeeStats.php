@@ -27,6 +27,6 @@ class EmployeeStats extends BaseWidget
     // Ubah dari protected ke public
     public function getColumnSpan(): int
     {
-        return 2; // Span 2 kolom
+        return 2;
     }
 }
