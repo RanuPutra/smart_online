@@ -15,8 +15,8 @@ class Dashboard extends BaseDashboard
     public function getWidgets(): array
     {
         return [
-            CustomDashboardWidget::class
-            // StatsOverview::class,
+            // CustomDashboardWidget::class
+            StatsOverview::class,
             // WeeklyAttendanceChart::class,
             // MonthlyAttendanceChart::class,
             // EmployeeStats::class,
