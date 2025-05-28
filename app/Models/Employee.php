@@ -2,13 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Employee extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'id_karyawan',
         'nama',
@@ -19,11 +16,11 @@ class Employee extends Model
         'alamat',
         'tanggal_bergabung',
         'foto',
-        'jenis_kelamin'
+        'jenis_kelamin',
     ];
 
     protected $casts = [
-        'tanggal_bergabung' => 'date'
+        'tanggal_bergabung' => 'date',
     ];
 
     public function absensis()

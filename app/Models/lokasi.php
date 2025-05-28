@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class lokasi extends Model
+class Lokasi extends Model
 {
-    protected $table = 'lokasis';
-    protected $fillable = ['nama_lokasi', 'alamat'];
-
+    protected $fillable = [
+        'nama_lokasi',
+        'alamat',
+    ];
 
     public function absensis()
-{
-    return $this->hasMany(Absensi::class);
-}
-
+    {
+        return $this->hasMany(Absensi::class);
+    }
 }
