@@ -5,9 +5,9 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\AbsensiResource\Pages;
 use App\Models\Absensi;
 use Filament\Forms;
-use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Forms\Form;
 use Filament\Tables\Table;
 
 class AbsensiResource extends Resource
@@ -15,32 +15,36 @@ class AbsensiResource extends Resource
     protected static ?string $model = Absensi::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-clock';
-    
+
+        
     protected static ?string $navigationLabel = 'Absensi';
+
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 Forms\Components\Card::make()
-                    ->schema([
-                        Forms\Components\Select::make('employee_id')
-                            ->relationship('employee', 'nama')
-                            ->required()
-                            ->searchable()
-                            ->preload(),
-                        Forms\Components\Select::make('lokasi_id')
-                            ->relationship('lokasi', 'nama_lokasi')
-                            ->required()
-                            ->searchable()
-                            ->preload(),
-                        Forms\Components\DateTimePicker::make('clock_in')
-                            ->nullable(),
-                        Forms\Components\DateTimePicker::make('clock_out')
-                            ->nullable(),
-                        Forms\Components\TimePicker::make('overtime')
-                            ->nullable(),
-                        Forms\Components\Textarea::make('notes')
+            ->schema([
+                Forms\Components\Select::make('employee_id')
+                    ->relationship('employee', 'nama')
+                    ->required()
+                    ->searchable()
+                    ->preload(),
+                Forms\Components\Select::make('lokasi_id')
+                    ->relationship('lokasi', 'nama_lokasi')
+                    ->required()
+                    ->searchable()
+                    ->preload(),
+
+                Forms\Components\DateTimePicker::make('clock_in')
+                    ->nullable(),
+                Forms\Components\DateTimePicker::make('clock_out')
+                ->nullable(),
+                Forms\Components\TextInput::make('overtime')
+                    ->disabled() // Read-only, karena dihitung otomatis
+                    ->formatStateUsing(fn ($record) => $record?->overtime_hours),
+                Forms\Components\Textarea::make('notes')
                             ->maxLength(65535)
                             ->nullable()
                             ->columnSpanFull(),
@@ -67,7 +71,8 @@ class AbsensiResource extends Resource
                 Tables\Columns\TextColumn::make('clock_out')
                     ->dateTime()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('overtime'),
+                Tables\Columns\TextColumn::make('overtime_hours')->label('Overtime'),
+                Tables\Columns\TextColumn::make('notes'),
             ])
             ->filters([
                 //
@@ -78,7 +83,7 @@ class AbsensiResource extends Resource
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
-                    Tables\Actions\DeleteBulkAction::make(),
+                Tables\Actions\DeleteBulkAction::make(),
                 ]),
             ]);
     }
