@@ -68,4 +68,3 @@ Route::prefix('backend')->name('backend.')->group(function () {
     Route::resource('lokasi', LokasiController::class);
 });
 
-Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard'); 

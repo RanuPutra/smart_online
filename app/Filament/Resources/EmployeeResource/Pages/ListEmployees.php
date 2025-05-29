@@ -13,7 +13,12 @@ class ListEmployees extends ListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            Actions\CreateAction::make() 
+                ->label('Tambah') 
+                ->Icon('heroicon-o-plus'),
+            Actions\ImportAction::make('importEmployee')
+                ->label('Import')
+                ->importer(\App\Filament\Imports\EmployeeImporter::class),
         ];
     }
 }

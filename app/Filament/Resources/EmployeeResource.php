@@ -24,6 +24,9 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Actions\DeleteAction;
 use Filament\Tables\Actions\BulkActionGroup;
 use Filament\Tables\Actions\DeleteBulkAction;
+use App\Filament\Imports\EmployeeImporter;
+use Filament\Actions\ImportAction;
+
 
 
 class EmployeeResource extends Resource
@@ -82,6 +85,9 @@ class EmployeeResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('foto') 
+                    ->disk('public') 
+                    ->circular(),
                 Tables\Columns\TextColumn::make('id_karyawan')
                     ->label('ID')
                     ->searchable(),
@@ -94,9 +100,6 @@ class EmployeeResource extends Resource
                 Tables\Columns\TextColumn::make('email'),
                 Tables\Columns\TextColumn::make('nomor_telepon')
                     ->label('No. Telp'),
-                Tables\Columns\ImageColumn::make('foto') 
-                    ->disk('public') 
-                    ->circular(),
                 Tables\Columns\TextColumn::make('jenis_kelamin')
                     ->label('Gender'),
                 Tables\Columns\TextColumn::make('tanggal_bergabung')
@@ -108,6 +111,7 @@ class EmployeeResource extends Resource
             ->actions([
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
+                
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
