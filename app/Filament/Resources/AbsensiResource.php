@@ -15,6 +15,11 @@ class AbsensiResource extends Resource
     protected static ?string $model = Absensi::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-clock';
+    
+    public static function getNavigationBadge(): ?string
+{
+    return static::getModel()::count();
+}
 
         
     protected static ?string $navigationLabel = 'Absensi';
@@ -25,30 +30,33 @@ class AbsensiResource extends Resource
         return $form
             ->schema([
                 Forms\Components\Card::make()
-            ->schema([
-                Forms\Components\Select::make('employee_id')
-                    ->relationship('employee', 'nama')
-                    ->required()
-                    ->searchable()
-                    ->preload(),
-                Forms\Components\Select::make('lokasi_id')
-                    ->relationship('lokasi', 'nama_lokasi')
-                    ->required()
-                    ->searchable()
-                    ->preload(),
+                ->schema([
+                    Forms\Components\Select::make('employee_id')
+                        ->relationship('employee', 'nama')
+                        ->required()
+                        ->searchable()
+                        ->preload(),
+                    Forms\Components\Select::make('lokasi_id')
+                        ->relationship('lokasi', 'nama_lokasi')
+                        ->required()
+                        ->searchable()
+                        ->preload(),
 
-                Forms\Components\DateTimePicker::make('clock_in')
-                    ->nullable(),
-                Forms\Components\DateTimePicker::make('clock_out')
-                ->nullable(),
-                Forms\Components\TextInput::make('overtime')
-                    ->disabled() // Read-only, karena dihitung otomatis
-                    ->formatStateUsing(fn ($record) => $record?->overtime_hours),
-                Forms\Components\Textarea::make('notes')
-                            ->maxLength(65535)
-                            ->nullable()
-                            ->columnSpanFull(),
-                    ]) //endcard
+                    Forms\Components\DateTimePicker::make('clock_in')
+                        ->nullable()
+                        ->seconds(false),
+
+                    Forms\Components\DateTimePicker::make('clock_out')
+                        ->nullable()
+                        ->seconds(false),
+                    Forms\Components\TextInput::make('overtime')
+                        ->disabled() // Read-only, karena dihitung otomatis
+                        ->formatStateUsing(fn ($record) => $record?->overtime_hours),
+                    Forms\Components\Textarea::make('notes')
+                                ->maxLength(65535)
+                                ->nullable()
+                                ->columnSpanFull(),
+                        ]) //endcard
             ]); //endform
     }
 

@@ -34,6 +34,11 @@ class EmployeeResource extends Resource
     protected static ?string $model = Employee::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-users';
+
+    public static function getNavigationBadge(): ?string
+{
+    return static::getModel()::count();
+}
     
     protected static ?string $navigationLabel = 'Karyawan';
 

@@ -15,6 +15,11 @@ class LokasiResource extends Resource
     protected static ?string $model = Lokasi::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-map-pin';
+
+    public static function getNavigationBadge(): ?string
+{
+    return static::getModel()::count();
+}
     
     protected static ?string $navigationLabel = 'Lokasi';
 

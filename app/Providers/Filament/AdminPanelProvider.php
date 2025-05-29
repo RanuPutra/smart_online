@@ -29,13 +29,13 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->colors([
-                'primary' => Color::Blue,
-            ])
+                'primary' => Color::Blue,    ])
             ->font('Poppins')
             ->spa()
             ->topNavigation()     
-            ->sidebarCollapsibleOnDesktop()
+            //->sidebarCollapsibleOnDesktop()  bisa pake ini juga ->sidebarFullyCollapsibleOnDesktop();
             ->brandName('Time Management')
+            //->brandLogo(asset('images/logo.png'));
             ->profile()
             ->userMenuItems([
                 'profile' => MenuItem::make()->label('Edit Profil'),
