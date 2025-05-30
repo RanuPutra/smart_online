@@ -17,5 +17,9 @@
 </div>
 
 
+{{-- Overview Section --}}
+<div class="w-full mb-4">
+@livewire('app.filament.widgets.advanced-stats-overview-widget')
+    </div>
 
 </x-filament-panels::page>

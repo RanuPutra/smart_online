@@ -3,14 +3,19 @@
 namespace App\Filament\Pages;
 
 use Filament\Pages\Dashboard as BaseDashboard;
+use App\Filament\Widgets\AdvancedStatsOverviewWidget;
+use EightyNine\FilamentAdvancedWidget\AdvancedStatsOverviewWidget\Stat;
+
 
 class Dashboard extends BaseDashboard
 {
     public function getWidgets(): array
     {
         return [
+            AdvancedStatsOverviewWidget::class,
         ];
     }
+    
 
     public function getColumns(): int | string | array
     {
@@ -27,18 +32,4 @@ class Dashboard extends BaseDashboard
         return 'filament.pages.dashboard';
     }
 
-    
-
-    // Komentari atau hapus metode ini karena nggak dipakai lagi
-    // public function getViewData(): array
-    // {
-    //     $widgets = [
-    //         'StatsOverview' => app(StatsOverview::class),
-    //         'WeeklyAttendanceChart' => app(WeeklyAttendanceChart::class),
-    //         'MonthlyAttendanceChart' => app(MonthlyAttendanceChart::class),
-    //         'EmployeeStats' => app(EmployeeStats::class),
-    //     ];
-    //
-    //     return ['widgets' => $widgets];
-    // }
 }

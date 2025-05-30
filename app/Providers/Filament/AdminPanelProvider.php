@@ -18,6 +18,8 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Navigation\MenuItem;
+use App\Filament\Widgets\Datawidget;
+use App\Filament\Widgets\AdvancedStatsOverviewWidget;
 
 class AdminPanelProvider extends PanelProvider
 {
@@ -47,7 +49,7 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')
             ->widgets([
-
+                AdvancedStatsOverviewWidget::class,
             ])
             ->middleware([
                 EncryptCookies::class,
